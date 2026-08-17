@@ -1,3 +1,21 @@
+name: Injection Lab
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Título para testar"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Reproduce original command
         env:
           TITLE: ${{ inputs.title }}
