@@ -22,7 +22,14 @@ jobs:
 
         run: |
           echo "===== INICIO ====="
-
-          echo 'Título recebido: ${{ toJson(env.TITLE) }}'
-
+          echo "Título recebido: ${{ toJson(env.TITLE) }}"
           echo "===== FIM ====="
+
+      - name: Safe shell test
+        env:
+          TITLE: ${{ inputs.title }}
+
+        run: |
+          echo "===== SAFE TEST ====="
+          printf '%s\n' "$TITLE"
+          echo "===== SAFE END ====="
