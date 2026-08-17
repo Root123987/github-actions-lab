@@ -16,20 +16,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test title
+      - name: Reproduce original sink
         env:
           TITLE: ${{ inputs.title }}
 
         run: |
-          echo "===== INICIO ====="
-          echo "Título recebido: ${{ toJson(env.TITLE) }}"
-          echo "===== FIM ====="
+          echo "===== BEFORE ====="
 
-      - name: Safe shell test
-        env:
-          TITLE: ${{ inputs.title }}
+          echo 'Payload: {"title": ${{ toJson(env.TITLE) }}}'
 
-        run: |
-          echo "===== SAFE TEST ====="
-          printf '%s\n' "$TITLE"
-          echo "===== SAFE END ====="
+          echo "===== AFTER ====="
