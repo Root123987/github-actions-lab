@@ -16,19 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Reproduce original command
-        env:
-          TITLE: ${{ inputs.title }}
-
+      - name: Direct shell injection test
         run: |
           echo "===== BEFORE ====="
-
-          curl --version
-
-          curl \
-            -X POST \
-            -H "Content-Type: application/json" \
-            -d '{"title": ${{ toJson(env.TITLE) }}}' \
-            http://127.0.0.1:9
-
+          echo 'TITLE: ${{ inputs.title }}'
           echo "===== AFTER ====="
